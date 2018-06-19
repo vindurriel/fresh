@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"../config"
+	"github.com/vindurriel/fresh/config"
 )
 
 const (

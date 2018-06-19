@@ -17,7 +17,7 @@ import (
 	"fmt"
 	"os"
 
-	"./runner"
+	"github.com/vindurriel/fresh/runner"
 )
 
 func main() {
