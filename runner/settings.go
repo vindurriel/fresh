@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pilu/config"
+	"../config"
 )
 
 const (
