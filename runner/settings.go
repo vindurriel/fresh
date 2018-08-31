@@ -22,14 +22,14 @@ var settings = map[string]string{
 	"tmp_path":          "./tmp",
 	"build_name":        "runner-build",
 	"build_log":         "runner-build-errors.log",
-	"valid_ext":         ".go, .tpl, .tmpl, .html",
+	"valid_ext":         ".go, .tpl, .tmpl, .html, .conf, .yml,.yaml",
 	"build_delay":       "600",
 	"colors":            "1",
-	"log_color_main":    "cyan",
-	"log_color_build":   "yellow",
+	"log_color_fresh":    "cyan",
+	"log_color_builder":   "yellow",
 	"log_color_runner":  "green",
 	"log_color_watcher": "magenta",
-	"log_color_app":     "",
+	"log_color_bin":     "white",
 }
 
 var colors = map[string]string{

@@ -3,7 +3,6 @@ package runner
 import (
 	"fmt"
 	"os"
-	"runtime"
 	"strings"
 	"syscall"
 	"time"
@@ -31,25 +30,15 @@ func flushEvents() {
 }
 
 func start() {
-	loopIndex := 0
 	buildDelay := buildDelay()
 
 	started := false
 
 	go func() {
 		for {
-			loopIndex++
-			mainLog("Waiting (loop %d)...", loopIndex)
-			eventName := <-startChannel
-
-			mainLog("receiving first event %s", eventName)
-			mainLog("sleeping for %d milliseconds", buildDelay)
+			<-startChannel
 			time.Sleep(buildDelay * time.Millisecond)
-			mainLog("flushing events")
-
 			flushEvents()
-
-			mainLog("Started! (%d Goroutines)", runtime.NumGoroutine())
 			err := removeBuildErrorsLog()
 			if err != nil {
 				mainLog(err.Error())
@@ -70,7 +59,6 @@ func start() {
 			}
 
 			started = true
-			mainLog(strings.Repeat("-", 20))
 		}
 	}()
 }
@@ -81,11 +69,11 @@ func init() {
 }
 
 func initLogFuncs() {
-	mainLog = newLogFunc("main")
+	mainLog = newLogFunc("fresh")
 	watcherLog = newLogFunc("watcher")
 	runnerLog = newLogFunc("runner")
-	buildLog = newLogFunc("build")
-	appLog = newLogFunc("app")
+	buildLog = newLogFunc("builder")
+	appLog = newLogFunc("bin")
 }
 
 func initLimit() {
