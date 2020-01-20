@@ -24,7 +24,7 @@ func build() (string, bool) {
 	if buildArgs != "" {
 		args = append(args[:1], strings.Split(buildArgs, ";")...)
 	}
-	args = append(args, "-i", "-o", buildPath(), root())
+	args = append(args, "-o", buildPath(), root())
 
 	buildLog(fmt.Sprintf("Building, args: %v", args))
 
